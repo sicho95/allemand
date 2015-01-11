@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import csv
-import WindVoc
+import WindVoc2
 from tkinter import Tk
 
 point = 0
@@ -10,10 +10,10 @@ point = 0
 def lancer():
     MonVoc = Tk()
     MonVoc.title("Allemand - Vocabulaire")
-    Mafenetre = WindVoc.FenetreVoc(master=MonVoc)
+    Mafenetre = WindVoc2.FenetreVoc(master=MonVoc)
+    MonVoc.mainloop()
     newconsigne = "Traduisez le mot ou l'expression suivante du Français à l'Allemand"
     Mafenetre.ChgConsigne(newconsigne)
-    print(type(Mafenetre))
 
    #  file = "voc.csv"
    #  fichier = open(file)
