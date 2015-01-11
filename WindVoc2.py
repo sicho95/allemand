@@ -10,14 +10,13 @@ class FenetreVoc(Frame):
 
         Frame.__init__(self, master)
 
-        self.ConsigneTxt = StringVar()
         self.MotLabel = StringVar()
         self.Reponse = StringVar()
         self.Resultat = StringVar()
 
         #------------ Label contenant la consigne ancré au nord --------------#
 
-        self.LabelInstr = Label(self.master, textvariable=self.ConsigneTxt)
+        self.LabelInstr = Label(self.master)
         self.LabelInstr.pack(anchor = N,pady=4)
 
         #---------------------------------------------------------------------#
@@ -53,8 +52,7 @@ class FenetreVoc(Frame):
 
 
     def ChgConsigne(self, NewConsigne):
-        self.ConsigneTxt.set(NewConsigne)
-        self.LabelInstr.configure(textvariable = self.ConsigneTxt)
+        self.LabelInstr.configure(text = NewConsigne)
         self.LabelInstr.update_idletasks()
 
     def ChgMot(self, NewMot):
