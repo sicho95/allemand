@@ -4,31 +4,35 @@
 
 from tkinter import *
 
-class FenetreVoc(Frame):
+class FenetreVoc(Tk):
 
-    def __init__(self, master=NONE):
+    def __init__(self,parent):
+        Tk.__init__(self,parent)
+        self.parent = parent
+        self.creationfenetre()
 
-        Frame.__init__(self, master)
+    def creationfenetre(self):
 
         self.MotLabel = StringVar()
         self.Reponse = StringVar()
         self.Resultat = StringVar()
+        self.Consigne = StringVar()
 
         #------------ Label contenant la consigne ancré au nord --------------#
 
-        self.LabelInstr = Label(self.master)
+        self.LabelInstr = Label(self, textvariable=self.Consigne)
         self.LabelInstr.pack(anchor = N,pady=4)
 
         #---------------------------------------------------------------------#
 
         #-------- Frame contenant les boites de textes ancré au nord ---------#
 
-        FrameText = Frame(self.master)
-        FrameText.pack(anchor = N, pady=6)
+        self.FrameText = Frame(self)
+        self.FrameText.pack(anchor = N, pady=6)
 
-        LabelVoc = Label(FrameText, textvariable=self.MotLabel, width=40)
-        LabelFleche = Label(FrameText, text="->")
-        TextRep = Entry(FrameText, textvariable=self.Reponse, width=40)
+        LabelVoc = Label(self.FrameText, textvariable=self.MotLabel, width=40)
+        LabelFleche = Label(self.FrameText, text="->")
+        TextRep = Entry(self.FrameText, textvariable=self.Reponse, width=40)
 
         TextRep.bind('<Return>', self.event)
 
@@ -40,18 +44,23 @@ class FenetreVoc(Frame):
 
         #-Label contenant le resultat ancré au nord donc sous la frame precedente-#
 
-        LabelResult = Label(self.master, textvariable=self.Resultat)
-        LabelResult.pack(anchor = N,pady=4)
+        self.LabelResult = Label(self, textvariable=self.Resultat)
+        self.LabelResult.pack(anchor = N,pady=4)
 
         #-------------------------------------------------------------------------#
 
 
     def event(self, *args):
         print(self.Reponse.get())
+        self.Reponse.set("")
 
 
     def ChgConsigne(self, NewConsigne):
-        self.LabelInstr.configure(text = NewConsigne)
-        self.LabelInstr.update_idletasks()
+        self.Consigne.set(NewConsigne)
+        self.update_idletasks()
 
 
+if __name__ == "__main__":
+    app = FenetreVoc(None)
+    app.title('my application')
+    app.mainloop()
