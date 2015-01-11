@@ -47,15 +47,11 @@ class FenetreVoc(Frame):
 
 
     def event(self, *args):
-        self.Reponse.get()
         print(self.Reponse.get())
 
 
     def ChgConsigne(self, NewConsigne):
         self.LabelInstr.configure(text = NewConsigne)
         self.LabelInstr.update_idletasks()
-
-    def ChgMot(self, NewMot):
-        self.MotLabel.set(NewMot)
 
 
